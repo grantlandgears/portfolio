@@ -1,4 +1,5 @@
 # CYCLISTIC DATA STUDY
+<img src="https://drive.google.com/uc?export=view&id=1vaicvK3W1eCDOc7PG_tpRctlsRmLV5vZ" width="250" height="200">
 
 ## This markdown contains the detailed steps I took in my analysis of the Cyclistic dataset.  The company is fictional as part of a Coursera / Google DA cert, but data is real - unsure from what company.
 
@@ -22,4 +23,13 @@ ride_id	|rideable_type	|started_at	|ended_at	|start_station_name	|start_station_
 
 The ones that popped to me first were member, rideable type, started_at and ended_at.  I suspected they would be the most use to the questions I was looking to answer.  I checked through the data to see how clean it was.  I looked for nulls, data type discrepencies, garbage data (eg for an address 123456789 Main Ave).  All in all the data looked pretty clean.  I would need to more thoroughly clean it of course, but it looked pretty good which makes sense as this data is clearly automatically captured by Cyclistic software and not by humans.
 
-The started_at and ended_at were a date timestamp.  I knew I'd want to look at time of day and day of week separate, so I started to pull those apart.
+The started_at and ended_at were a date timestamp.  I knew I'd want to look at time of day and day of week separate, so I started to pull those apart.  I used the started_at time as I was more interested in when a bike ride was initiated for this.  This was done with a split on space:
+```
+=split(B2, " ")
+```
+I then created a day_phase column which put the started_at time into two buckets; morning (before noon) and afternoon.  Using a pivot and a quick calculation I found both riders rode more often in the afternoon, but members rode a little more evenly throughout the day whereas casual riders were more heavily in the afternoon.
+```
+casual percentage afternoon		78.67%	  member percentage afternoon		69.22%
+casual percentage morning		  21.33%	  member percentage morning		  30.78%
+```
+
