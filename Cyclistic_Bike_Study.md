@@ -15,7 +15,7 @@ The data came in 12 .csvs, one for each month from Oct 2020 to Sept 2021, so the
 The first place I went to was the fastest - Gsheets.  I pulled in the smallest monthly file because anything bigger choked up Gsheets.  The .csvs had up to hundreds of thousands of rows, but they ranged in sized.  I feel confident this is due to the seasons with fewer riders in the winter than summer.  Feb .csv was the smallest and July was the biggest.  That's neither here nor there, but just an observation.
 
 ### Gsheets
-I pulled in February data to Gsheets and started to get used to the data.  Normally I would prefer to go to SQL, but popping over to Gsheets was fastest.  I started to get familiar with the data.  There were X columns: 
+I pulled in February data to Gsheets and started to get used to the data.  Normally I would prefer to go to SQL, but popping over to Gsheets was fastest in this case.  I started to get familiar with the data.  There were 13 columns and here's a sample line of data:
 
 ride_id	|rideable_type	|started_at	|ended_at	|start_station_name	|start_station_id	|end_station_name	|end_station_id	|start_lat	|start_lng	|end_lat	|end_lng	|member_casual
 ------------ |	------------ |	------------ |	------------ |	------------ |	------------ |	------------ |	------------ |	------------ |	------------ |	------------ |	------------ |	------------ |
@@ -29,7 +29,17 @@ The started_at and ended_at were a date timestamp.  I knew I'd want to look at t
 ```
 I then created a day_phase column which put the started_at time into two buckets; morning (before noon) and afternoon.  Using a pivot and a quick calculation I found both riders rode more often in the afternoon, but members rode a little more evenly throughout the day whereas casual riders were more heavily in the afternoon.
 ```
-casual percentage afternoon		78.67%	  member percentage afternoon		69.22%
-casual percentage morning		  21.33%	  member percentage morning		  30.78%
+casual percentage afternoon 78.67%  member percentage afternoon 69.22%
+casual percentage morning 21.33%  member percentage morning 30.78%
 ```
+I was also curious to see average ride duration which I got to by first subtracting the started_at time from the ended_at time and a pivot.  The average casual rider time was 2x a member!  This was a substantial delta I would dig into further as it was a clear difference.
+
+Next I would curious about bike type.  This data needed no modifying, just a pivot.  Members never rode a docked bike which jumped out.  I thought this was an ah-ha moment - altough this would prove wrong later as I pulled in more data.
+
+Lastly I wanted to know what days of the week casual and members rode the most.  I first pulled the day of week from the date timestamp:
+```
+=TEXT(B2,"dddd")
+```
+The pivoted that for totals by day and a calculation to average per total percentage.  Again was another ah-ha moment where you saw a very consistent ridership in members throughout the week, particularly M-F whereas the casual riders were more heavily on the weekends:
+![image](https://user-images.githubusercontent.com/70623337/140694682-cbef2b28-9ef7-4ff8-a6ed-23f6510319a0.png)
 
