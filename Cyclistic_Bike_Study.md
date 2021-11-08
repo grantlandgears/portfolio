@@ -13,4 +13,13 @@ The data came in 12 .csvs, one for each month from Oct 2020 to Sept 2021, so the
 ## EDA
 The first place I went to was the fastest - Gsheets.  I pulled in the smallest monthly file because anything bigger choked up Gsheets.  The .csvs had up to hundreds of thousands of rows, but they ranged in sized.  I feel confident this is due to the seasons with fewer riders in the winter than summer.  Feb .csv was the smallest and July was the biggest.  That's neither here nor there, but just an observation.
 
-I pulled in February data to Gsheets and started to get used to the data.  Normally I would prefer to go to SQL, but popping over to Gsheets was fastest.  I started to get familiar with the data.  There were 
+### Gsheets
+I pulled in February data to Gsheets and started to get used to the data.  Normally I would prefer to go to SQL, but popping over to Gsheets was fastest.  I started to get familiar with the data.  There were X columns: 
+
+ride_id	|rideable_type	|started_at	|ended_at	|start_station_name	|start_station_id	|end_station_name	|end_station_id	|start_lat	|start_lng	|end_lat	|end_lng	|member_casual
+------------ |	------------ |	------------ |	------------ |	------------ |	------------ |	------------ |	------------ |	------------ |	------------ |	------------ |	------------ |	------------ |
+89E7AA6C29227EFF	|classic_bike	|2021-02-12 16:14:56	|2021-02-12 16:21:43	|Glenwood Ave & Touhy Ave	|525	|Sheridan Rd & Columbia Ave	|660	|42.012701	|-87.666058	|42.004583	|-87.661406	|member
+
+The ones that popped to me first were member, rideable type, started_at and ended_at.  I suspected they would be the most use to the questions I was looking to answer.  I checked through the data to see how clean it was.  I looked for nulls, data type discrepencies, garbage data (eg for an address 123456789 Main Ave).  All in all the data looked pretty clean.  I would need to more thoroughly clean it of course, but it looked pretty good which makes sense as this data is clearly automatically captured by Cyclistic software and not by humans.
+
+The started_at and ended_at were a date timestamp.  I knew I'd want to look at time of day and day of week separate, so I started to pull those apart.
