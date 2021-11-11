@@ -245,4 +245,5 @@ day_phase_df_casual %>%
 I previously did some work in Jupyter notebooks and preferred that over Rstudio.
 
 ### Last it was over to Tableau!
+Tableau was great for big data sets.  I was able to join all of them without removing any columns.
 
