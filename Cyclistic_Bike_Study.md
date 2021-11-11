@@ -1,7 +1,7 @@
 # CYCLISTIC DATA STUDY
 <img src="https://drive.google.com/uc?export=view&id=1vaicvK3W1eCDOc7PG_tpRctlsRmLV5vZ" width="250" height="200">
 
-## This markdown contains the detailed steps I took in my analysis of the Cyclistic dataset.  The company is fictional as part of a Coursera / Google DA cert, but data is real - unsure from what company.  Here is my [deck outlining my findings:](https://docs.google.com/presentation/d/1aay_YG4JIxWKMNDpuxqPFX2U4PCMtRjTa-zuxy40RRA/edit?usp=sharing)
+## This markdown contains the detailed steps I took in my analysis of the Cyclistic dataset.  The company is fictional as part of a Coursera / Google DA cert, but data is real - unsure from what company.  Here is my [deck outlining my findings](https://docs.google.com/presentation/d/1aay_YG4JIxWKMNDpuxqPFX2U4PCMtRjTa-zuxy40RRA/edit?usp=sharing)
 
 ## The ask
 Cyclisitic is looking to increase revenue by converting casual riders to subscribed members locking in regular monthly subscriptions.  The questions posed are:
@@ -248,7 +248,7 @@ I previously did some work in Jupyter notebooks and preferred that over Rstudio.
 Tableau was great for big data sets.  I was able to join all of them without removing any columns.
 
 I created seven viz's; Average Ride Time, Day of Week for Casual and Members, Day Phase Heat Graph, Day Phase Line Chart Difference and Percentile, and Bike Type.
-[Here is the public view of these:](https://public.tableau.com/app/profile/grantland.gears/viz/CyclistBikeSharev2/AllVizs?publish=yes).  Below are specific breakdowns. 
+[Here is the public view of these](https://public.tableau.com/app/profile/grantland.gears/viz/CyclistBikeSharev2/AllVizs?publish=yes).  Below are specific breakdowns. 
 
 
 ## Average Ride Time
