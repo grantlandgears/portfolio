@@ -39,7 +39,8 @@ Next I would curious about bike type.  This data needed no modifying, just a piv
 Lastly I wanted to know what days of the week casual and members rode the most.  I first pulled the day of week from the date timestamp:
 ```
 =TEXT(B2,"dddd")
-``` th
+```
+
 The pivoted that for totals by day and a calculation to average per total percentage.  Again was another ah-ha moment where you saw a very consistent ridership in members throughout the week, particularly M-F whereas the casual riders were more heavily on the weekends:
 ![image](https://user-images.githubusercontent.com/70623337/140694682-cbef2b28-9ef7-4ff8-a6ed-23f6510319a0.png)
 
