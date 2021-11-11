@@ -271,10 +271,22 @@ For these vizs I couldn't figure out to display casual and members as their own 
 
 
 ## Day Phase Heat Graph
-I liked this graph a lot.  I knew members rode more around commute times and this graph made that very visible.  This is where the ease of Tableau is great.  I have a timestamp field with when a ride started.  I didn't have to do any fancy converting of timestamp to hours.  I just selected Date Part > Hours in the Custom Date selector and voila:
+I liked this graph a lot.  I knew members rode more around commute times and this graph made that very visible.  This is where the ease of Tableau is great.  I have a timestamp field with when a ride started.  I didn't have to do any fancy converting of timestamp to hours.  I just selected Date Part > Hours in the Custom Date selector and voila, you can see the clear commute trend for member riders:
 
 <img src="https://user-images.githubusercontent.com/70623337/141253420-080d4ba8-4632-4e8b-ac30-d0c4789732da.png" width="400">
 
 
-Day Phase Line Chart Difference and Percentile, and Bike Type.
+## Day Phase Line Chart Difference and Percentile
+This was a continuation of the heat graph chart.  I wanted to look at the data in another way just for fun.  I was never satisfied with these and ultimately the heat graph provided the best visual.  For posterity here are the two line graphs I created of casual and member rides by hour of the day.  First is a difference graph with each hour being the difference from the previous hour:
+<img src="https://user-images.githubusercontent.com/70623337/141254842-6e79f000-4c08-4a0a-bc67-32256eb6739e.png" width="500">
+
+
+Second is a Percentile relative to the max:
+<img src="https://user-images.githubusercontent.com/70623337/141254900-2942d25a-15c7-427f-857a-567dfea67825.png" width="500">
+
+## Bike Type 
+This one didn't reveal too much aside from members ride the classic_bike more than the other two.  So do casual riders, but members at a greater percentage:
+
+<img src="https://user-images.githubusercontent.com/70623337/141255762-5f012ff1-687f-4760-b7c2-24638abdb524.png" width="500">
+
 
