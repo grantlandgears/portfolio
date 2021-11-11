@@ -122,5 +122,8 @@ merged <- rbind(df, df1)
 #exported csv with converted columns
 write.csv(df_dropped,"/cloud/project/bike_data/trimmed-day_phase-202010-divvy-tripdata.csv", row.names = FALSE)
 ```
+I had to be very careful in my naming to remember what was done to the exported set and for how many months.
+
+
 
 I previously did some work in Jupyter notebooks and preferred that over Rstudio.
