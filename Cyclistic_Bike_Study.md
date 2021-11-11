@@ -290,4 +290,4 @@ This one didn't reveal too much aside from members ride the classic_bike more th
 
 <img src="https://user-images.githubusercontent.com/70623337/141255762-5f012ff1-687f-4760-b7c2-24638abdb524.png" width="500">
 
-That's my story and I'm sticking to it ;).   Seriously though, 
+That's my story and I'm sticking to it ;).   Seriously though, it was a fun case study.  I enjoyed reading through the data and using a variety of tools to slice and dice the data.  I didn't get around to putting it into a SQL DB like Google Big Query which is odd because I'm most comfortable with SQL.  I guess it was good for me to try other platforms.
