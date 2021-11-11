@@ -255,6 +255,9 @@ Here is the public view of these: https://public.tableau.com/app/profile/grantla
 For this one I needed to create a ride duration measure by subtracking started_on from ended_on:
 ![image](https://user-images.githubusercontent.com/70623337/141251180-d27f3667-06d7-4bd7-8cf3-b6ba00632b51.png)
 
+<img src="https://drive.google.com/uc?export=view&id=1vaicvK3W1eCDOc7PG_tpRctlsRmLV5vZ" width="250" height="200">
+
+
 Then I filtered out rides over 8 hours (480 minutes) by creating another measure
 ![image](https://user-images.githubusercontent.com/70623337/141251341-6f9aed74-d6dd-4219-ad01-019017d66c62.png)
 
