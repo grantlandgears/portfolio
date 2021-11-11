@@ -253,15 +253,28 @@ Here is the public view of these: https://public.tableau.com/app/profile/grantla
 
 ## Average Ride Time
 For this one I needed to create a ride duration measure by subtracking started_on from ended_on:
-<img src="https://user-images.githubusercontent.com/70623337/141251180-d27f3667-06d7-4bd7-8cf3-b6ba00632b51.png" width="300">
 
-Then I filtered out rides over 8 hours (480 minutes) by creating another measure
-<img src="https://user-images.githubusercontent.com/70623337/141251341-6f9aed74-d6dd-4219-ad01-019017d66c62.png" width="300">
+<img src="https://user-images.githubusercontent.com/70623337/141251180-d27f3667-06d7-4bd7-8cf3-b6ba00632b51.png" width="400">
+
+Then I filtered out rides over 8 hours (480 minutes) by creating another measure:
+
+<img src="https://user-images.githubusercontent.com/70623337/141251341-6f9aed74-d6dd-4219-ad01-019017d66c62.png" width="400">
 
 Then I tossed that into a simple bar chart:
+
 <img src="https://user-images.githubusercontent.com/70623337/141251409-7a44af9f-96f9-465c-ae50-557cb4319ffa.png" width="500">
 
+## Day of Week for Casual and Members
+For these vizs I couldn't figure out to display casual and members as their own line since they're in the same field, so I created two graphs and filtered for just one at a time then created a dashboard with both graphs:
+
+<img src="https://user-images.githubusercontent.com/70623337/141253018-d48b4563-cd88-4241-ac10-3d860af1c9b7.png" width="600">
 
 
-Day of Week for Casual and Members, Day Phase Heat Graph, Day Phase Line Chart Difference and Percentile, and Bike Type.
+## Day Phase Heat Graph
+I liked this graph a lot.  I knew members rode more around commute times and this graph made that very visible.  This is where the ease of Tableau is great.  I have a timestamp field with when a ride started.  I didn't have to do any fancy converting of timestamp to hours.  I just selected Date Part > Hours in the Custom Date selector and voila:
+
+<img src="https://user-images.githubusercontent.com/70623337/141253420-080d4ba8-4632-4e8b-ac30-d0c4789732da.png" width="400">
+
+
+Day Phase Line Chart Difference and Percentile, and Bike Type.
 
