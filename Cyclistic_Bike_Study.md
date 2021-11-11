@@ -1,7 +1,7 @@
 # CYCLISTIC DATA STUDY
 <img src="https://drive.google.com/uc?export=view&id=1vaicvK3W1eCDOc7PG_tpRctlsRmLV5vZ" width="250" height="200">
 
-## This markdown contains the detailed steps I took in my analysis of the Cyclistic dataset.  The company is fictional as part of a Coursera / Google DA cert, but data is real - unsure from what company.  Here is my deck outlining my findings: https://docs.google.com/presentation/d/1aay_YG4JIxWKMNDpuxqPFX2U4PCMtRjTa-zuxy40RRA/edit?usp=sharing
+## This markdown contains the detailed steps I took in my analysis of the Cyclistic dataset.  The company is fictional as part of a Coursera / Google DA cert, but data is real - unsure from what company.  Here is my [deck outlining my findings:](https://docs.google.com/presentation/d/1aay_YG4JIxWKMNDpuxqPFX2U4PCMtRjTa-zuxy40RRA/edit?usp=sharing)
 
 ## The ask
 Cyclisitic is looking to increase revenue by converting casual riders to subscribed members locking in regular monthly subscriptions.  The questions posed are:
