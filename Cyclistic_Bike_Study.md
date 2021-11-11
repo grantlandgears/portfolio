@@ -66,7 +66,34 @@ invisible(lapply(packages, library, character.only = TRUE))
 ```
 Since I was consistently running out of Ram and needed to restart Rstudio it was nice to find the above shortcut for loading packages.
 
-I started my EDA phase of investigating the data.  I used a variety of commands to view/summarise data:
+I discovered 'fread' which was great because I could import select columns at a time and reduce memory:
+```
+df <- read.csv("/cloud/project/bike_data/source_sets/202010-divvy-tripdata.csv")
+df1 <- fread("/cloud/project/bike_data/source_sets/202010-divvy-tripdata.csv", select = c("rideable_type","started_at","member_casual"))
+```
+There was a discrepancy in the csvs where two of them had their columns in a different format, so I needed to convert those:
+```
+glimpse(df)
+
+#convert one column from int to character
+df1$start_station_id <- as.character(as.numeric(df1$start_station_id))  
+
+#convert multiple columns from int to character
+cols.num <- c("start_station_id","end_station_id")
+
+df1[cols.num] <- sapply(df[cols.num],as.character)
+```
+I was able to import a couple csvs at a time and would merge them after the field type change then export:
+```
+# merge datasets together
+merged <- rbind(df, df1)
+
+#exported csv with converted columns
+write.csv(df_dropped,"/cloud/project/bike_data/trimmed-day_phase-202010-divvy-tripdata.csv", row.names = FALSE)
+```
+I had to be very careful in my naming to remember what was done to the exported set and for how many months.
+
+I started my EDA phase of investigating the data:
 ```
 #view rows, columns, type, and sample
 glimpse(df)
@@ -95,35 +122,127 @@ df <- df[!row.has.na,]
 count(df)
 ```
 
-I then began cleaning and prepping the data.  I used both 'read' and 'fread' commands:
+I knew I'd want a ride duration column, so whipped that up:
 ```
-df <- read.csv("/cloud/project/bike_data/source_sets/202010-divvy-tripdata.csv")
-df1 <- fread("/cloud/project/bike_data/source_sets/202010-divvy-tripdata.csv", select = c("rideable_type","started_at","member_casual"))
+#Find duration of ride time
+df$ride_duration <- difftime(df$ended_at,df$started_at)
 ```
-fread was great for loading a subset of columns without hogging all my memory.
-
-There was a discrepancy in the csvs where two of them had their columns in a different format, so I needed to convert those:
+I realized there were some rides lasting 8, 12, 24+ hours.  
 ```
-glimpse(df)
-
-#convert one column from int to character
-df1$start_station_id <- as.character(as.numeric(df1$start_station_id))  
-
-#convert multiple columns from int to character
-cols.num <- c("start_station_id","end_station_id")
-
-df1[cols.num] <- sapply(df[cols.num],as.character)
+#There are hundreds greater than 8 hours (28800 seconds)
+sort(df$ride_duration,decreasing=TRUE)
 ```
-I was able to do a couple csvs at a time, so I would merge them after the change then export:
+I would exclude longer rides from my analysis because I felt anything over 8 hours was an accident and bad data.
+
+Seeing the data in chart form is obviously a benefit, so I threw some plots at it;
 ```
-# merge datasets together
-merged <- rbind(df, df1)
+#generates a beautiful web page with multiple reports and graphs of the data
+DataExplorer::create_report(df)
 
-#exported csv with converted columns
-write.csv(df_dropped,"/cloud/project/bike_data/trimmed-day_phase-202010-divvy-tripdata.csv", row.names = FALSE)
+#compare rider type to bike type
+barplot(df, member_casual = "X-axis", rideable_type = "Y-axis", main ="Bar-Chart")
+
+#boxplot graph showing that members take shorter rides than casual
+#See aggregate above for exact average number
+#My theory here is members know exactly where they want to go, eg work or
+#the store, so they're rides are short and direct.  Casual are taking a 
+#more leisurely ride.
+#average ride time
+df %>%
+filter(ride_duration < 4000) %>%
+  ggplot(aes(member_casual,ride_duration)) +
+  geom_boxplot()
 ```
-I had to be very careful in my naming to remember what was done to the exported set and for how many months.
+The charts confirmed my thoughts from Gsheets, but with more data.
 
+I wanted to get some precise numbers, so did some calculations:
+```
+#Determine average ride duration
+aggregate(df$ride_duration, list(df$member_casual), FUN=mean)
 
+RESULTS
+1  casual 1912.2909 secs
+2  member 664.4842 secs
 
+#Find total number of aggregate and as percentage of the whole
+##Example is elements for members & casual as a percentage
+
+#first install this package
+install.packages("formattable")
+
+#then run
+g <- df %>%
+  group_by(member_casual, rideable_type) %>%
+  summarise(cnt = n()) %>%
+  mutate(freq = formattable::percent(cnt / sum(cnt))) %>% 
+  arrange(desc(freq))
+
+View(g)
+
+#Group by member type and bike type to see counts using SQL for fun
+sqldf('select member_casual, rideable_type, count(*) as UNIQUE_COUNT from df group by member_casual, rideable_type')
+
+RESULTS
+  member_casual rideable_type UNIQUE_COUNT
+1        casual  classic_bike      1120715
+2        casual   docked_bike       407780
+3        casual electric_bike       829792
+4        member  classic_bike      1630116
+5        member   docked_bike       270200
+6        member electric_bike       877658
+'
+
+#Group by member type and bike type to see counts
+member_bike_type_count <- df %>%
+  count(member_casual,rideable_type)
+
+#combine member and bike type into single column to graph against their counts  
+member_bike_type_count <- unite(member_bike_type_count, combo, c(member_casual,rideable_type))
+```
+I wanted to see when departure times were:
+```
+#Generate day phase counts in two steps
+#no need creating a empty day phase column and adding 1 for morning and 2 for afternoon
+
+# Step 1: Split 'started_at' into two columns to do analysis on time of day
+df <- separate(df, started_at, into = c("started_at_date", "started_at_time"), sep = " ")
+
+# count values extracted in step above
+# FALSE is morning and TRUE is afternoon
+df %>%
+  count(member_casual,started_at_time >= "12:00:00")
+
+phase <- df %>%
+  group_by(member_casual, day_phase) %>%
+  summarise(cnt = n()) %>%
+  mutate(freq = formattable::percent(cnt / sum(cnt))) %>% 
+  arrange(desc(freq))
+
+#Group by member_casual column with day_phase
+day_phase_df <- df %>%
+  count(member_casual,day_phase)
+
+day_phase_df
+
+#Create df for members
+day_phase_df_member <- filter(day_phase_df, member_casual == "member")
+#Create df for casuals
+day_phase_df_casual <- filter(day_phase_df, member_casual == "casual")
+
+day_phase_df_casual
+day_phase_df_member
+
+#Find percent of whole per for members
+day_phase_df_member %>%
+  group_by(member_casual) %>%
+  mutate(percent = day_phase/sum(day_phase))
+
+#Find percent of whole per for casuals
+day_phase_df_casual %>%
+  group_by(member_casual) %>%
+  mutate(percent = day_phase/sum(day_phase))
+```
 I previously did some work in Jupyter notebooks and preferred that over Rstudio.
+
+### Last it was over to Tableau!
+
