@@ -50,17 +50,17 @@ My big challenge with Rstudio was getting the data in there, all 5 million rows.
 
 Before that though I found a more efficient way to import and load packages (thank interwebs):
 ```
-## IMPORT PACKAGES
-# Package names
+IMPORT PACKAGES
+#Package names
 packages <- c("tidyverse", "readr", "lubridate", "dplyr", "skimr", "DataExplorer", "ggplot2", "sqldf","data.table")
 
-# Install packages not yet installed
+#Install packages not yet installed
 installed_packages <- packages %in% rownames(installed.packages())
 if (any(installed_packages == FALSE)) {
   install.packages(packages[!installed_packages])
 }
 
-# Packages loading
+#Packages loading
 invisible(lapply(packages, library, character.only = TRUE))
 ```
 Since I was consistently running out of Ram and needed to restart Rstudio it was nice to find the above shortcut for loading packages.
@@ -92,7 +92,6 @@ df <- df[!row.has.na,]
 
 #Confirm rows are removed
 count(df)
-
 ```
 
 I then began cleaning and prepping the data.  I used both 'read' and 'fread' commands:
