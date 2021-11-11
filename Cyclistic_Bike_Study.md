@@ -1,7 +1,7 @@
 # CYCLISTIC DATA STUDY
 <img src="https://drive.google.com/uc?export=view&id=1vaicvK3W1eCDOc7PG_tpRctlsRmLV5vZ" width="250" height="200">
 
-## This markdown contains the detailed steps I took in my analysis of the Cyclistic dataset.  The company is fictional as part of a Coursera / Google DA cert, but data is real - unsure from what company.
+## This markdown contains the detailed steps I took in my analysis of the Cyclistic dataset.  The company is fictional as part of a Coursera / Google DA cert, but data is real - unsure from what company.  Here is my deck outlining my findings: https://docs.google.com/presentation/d/1aay_YG4JIxWKMNDpuxqPFX2U4PCMtRjTa-zuxy40RRA/edit?usp=sharing
 
 ## The ask
 Cyclisitic is looking to increase revenue by converting casual riders to subscribed members locking in regular monthly subscriptions.  The questions posed are:
@@ -282,6 +282,7 @@ This was a continuation of the heat graph chart.  I wanted to look at the data i
 
 
 Second is a Percentile relative to the max:
+
 <img src="https://user-images.githubusercontent.com/70623337/141254900-2942d25a-15c7-427f-857a-567dfea67825.png" width="500">
 
 ## Bike Type 
@@ -289,4 +290,4 @@ This one didn't reveal too much aside from members ride the classic_bike more th
 
 <img src="https://user-images.githubusercontent.com/70623337/141255762-5f012ff1-687f-4760-b7c2-24638abdb524.png" width="500">
 
-
+That's my story and I'm sticking to it ;).   Seriously though, 
