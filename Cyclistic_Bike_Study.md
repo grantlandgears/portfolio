@@ -248,7 +248,7 @@ I previously did some work in Jupyter notebooks and preferred that over Rstudio.
 Tableau was great for big data sets.  I was able to join all of them without removing any columns.
 
 I created seven viz's; Average Ride Time, Day of Week for Casual and Members, Day Phase Heat Graph, Day Phase Line Chart Difference and Percentile, and Bike Type.
-Here is the public view of these: https://public.tableau.com/app/profile/grantland.gears/viz/CyclistBikeSharev2/AllVizs?publish=yes.  Below are specific breakdowns. 
+[Here is the public view of these:](https://public.tableau.com/app/profile/grantland.gears/viz/CyclistBikeSharev2/AllVizs?publish=yes).  Below are specific breakdowns. 
 
 
 ## Average Ride Time
